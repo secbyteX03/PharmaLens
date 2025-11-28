@@ -1,0 +1,8 @@
+
+{
+  "name": "PharmaLens: Medication Identifier",
+  "description": "An AI-powered assistant to help you understand your medication. Upload a photo of a medicine box to get easy-to-understand information about its use, side effects, and important warnings. This tool is for informational purposes and is not a substitute for professional medical advice.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
