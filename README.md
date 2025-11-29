@@ -1,18 +1,35 @@
 # PharmaLens: AI-Powered Medication Identification & Safety
 
-PharmaLens is a web-based application designed to combat the proliferation of counterfeit medications and improve health literacy in Africa. By allowing users to simply take a picture of a medication, PharmaLens provides immediate, life-saving information about its use, side effects, and critical warnings. 
+PharmaLens is a web application designed to combat counterfeit medications and improve health literacy. Users can take a picture of a medication (a pill or its packaging), and the app will provide immediate, crucial information about its use, ingredients, side effects, and more.
 
-[Link to Live Demo](https://pharmalens-06104265-9325f.web.app)  
+**Live Demo:** [https://pharmalens-06104265-9325f.web.app](https://pharmalens-06104265-9325f.web.app)
+
 ![PharmaLens Desktop UI](assets/UIview.PNG)
+---
+
+## How It Works
+
+The application uses a simple but powerful workflow to deliver real-time medication analysis:
+
+1.  **Image Upload**: The user uploads an image of a medication directly in the browser.
+2.  **Frontend Processing**: The React frontend converts the image into a base64-encoded string.
+3.  **Backend Request**: The frontend sends this string to a Firebase Cloud Function.
+4.  **AI Analysis with Genkit**: The Cloud Function triggers a flow built with **Genkit**, an open-source AI framework from Google.
+5.  **Gemini Model**: The Genkit flow passes the image data and a detailed prompt to **Google's Gemini 1.5 Flash model**.
+6.  **JSON Response**: The Gemini model analyzes the image, identifies the medication, and returns a structured JSON object containing all the required information.
+7.  **Display Results**: The Firebase Function relays the JSON response back to the React frontend, which then parses and displays the information in a user-friendly format.
+
 ---
 
 ## Technology Stack
 
-PharmaLens is built with a modern, scalable technology stack:
+PharmaLens is built with a modern, scalable, and AI-centric technology stack:
 
 -   **Frontend**: A responsive web application built with **React** and **TypeScript**.
--   **Core AI Model**: **Google's Gemini 2.5 Flash**, a powerful, multimodal large language model accessed via the **Google AI API (Vertex AI)**.
--   **Deployment**: Hosted on **Firebase Hosting** for reliable and scalable delivery.
+-   **Backend**: Serverless logic hosted on **Firebase Cloud Functions**.
+-   **Core AI Framework**: **Genkit (from Google)** to streamline the development and management of the AI-powered workflow.
+-   **AI Model**: **Google's Gemini 1.5 Flash**, a powerful, multimodal large language model.
+-   **Deployment**: The entire application is hosted on **Firebase**, with the frontend on Firebase Hosting and the backend on Cloud Functions.
 
 ---
 
@@ -26,174 +43,87 @@ PharmaLens is built with a modern, scalable technology stack:
 
 ---
 
-## Showcase
-
-Here's a glimpse of PharmaLens in action.
-
-### Main Interface
-
-The clean and intuitive interface allows users to easily upload an image or take a new photo. The design is fully responsive and works seamlessly on both desktop and mobile devices.
-
-
-*Mobile View*
-![PharmaLens Mobile UI](assets/mobile%20view1.PNG)
-
-### Live Analysis in Action
-
-Click on the image below to watch this short video demonstrating the real-time analysis process:
-
-[![Watch the video](assets/UIview.PNG)](assets/video%20illutration.webm)
-
-### Example Results
-
-Once an image is analyzed, PharmaLens presents the information in a clear and organized manner.
-
-*Birth Control Analysis*
-![Birth Control Analysis](assets/illustration1.PNG)
-
-*Ibuprofen Analysis*
-![Ibuprofen Analysis](assets/illustration%202.PNG)
-
-
----
-
 ## Getting Started
 
-Follow these instructions to set up and run the project on your local machine for development and testing purposes.
+Follow these instructions to set up, run, and deploy the project.
 
 ### Prerequisites
 
-Make sure you have the following software installed on your machine:
+Make sure you have the following software installed:
 
--   **Node.js**: Version 20.x or later. You can download it from [nodejs.org](https://nodejs.org/).
+-   **Node.js**: Version 20.x or later.
 -   **npm**: Node Package Manager (comes with Node.js).
--   **Firebase CLI**: Google's command-line tool for managing Firebase projects. Install it globally with npm:
+-   **Firebase CLI**: Google's command-line tool for Firebase.
     ```bash
     npm install -g firebase-tools
     ```
 
-### 1. Clone the Repository
+### Setup Instructions
 
-First, clone the project repository to your local machine:
+1.  **Clone the Repository**:
+    ```bash
+    git clone https://github.com/secbyteX03/PharmaLens.git
+    cd PharmaLens
+    ```
 
-```bash
-git clone https://github.com/secbyteX03/PharmaLens.git
-cd PharmaLens
-```
+2.  **Log in to Firebase**:
+    Authenticate the Firebase CLI with your Google account.
+    ```bash
+    firebase login
+    ```
 
-### 2. Install Dependencies
-
-Install the required npm packages for the project:
-
-```bash
-npm install
-```
-
-### 3. Configure Your Gemini API Key
-
-The application requires a Google Gemini API key to function. 
-
-1.  **Get an API Key**: Obtain your API key from the [Google AI for Developers](https://ai.google.dev/) website.
-2.  **Create a Configuration File**:
-    -   In the `public` directory, create a new file named `config.js`.
-    -   Add the following line to `public/config.js`, replacing `"YOUR_API_KEY_HERE"` with your actual key:
-        ```javascript
-        window.GEMINI_API_KEY = "YOUR_API_KEY_HERE";
+3.  **Configure a Firebase Project**:
+    -   Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
+    -   In your local project, connect it to your Firebase project by running:
+        ```bash
+        firebase use --add
         ```
+    -   Select your new project from the list.
 
-    *This file is already listed in `.gitignore` to ensure your API key is not accidentally committed to the repository.*
+4.  **Install Frontend Dependencies**:
+    In the root directory of the project, run:
+    ```bash
+    npm install
+    ```
 
----
+5.  **Install Backend Dependencies**:
+    Navigate to the `functions` directory and install its dependencies:
+    ```bash
+    cd functions
+    npm install
+    cd ..
+    ```
 
-## Running the Application Locally
+### Running the Application Locally
 
-Once the setup is complete, you can run the React development server:
+To test the full application, you need to run both the frontend and the backend emulators.
 
-```bash
-npm start
-```
+1.  **Run the Backend Emulator**:
+    In the root directory, start the Firebase emulators. This will host the Cloud Function locally.
+    ```bash
+    firebase emulators:start --only functions
+    ```
 
-This will automatically open the application in your default web browser at **`http://localhost:3000`**.
+2.  **Run the Frontend Development Server**:
+    In a separate terminal, also in the root directory, start the React app:
+    ```bash
+    npm start
+    ```
+    This will open the application in your browser at `http://localhost:3000`. The frontend will automatically connect to the local function emulator.
 
-The page will reload if you make edits to the source code.
+### Deployment
 
----
+To deploy the entire application to Firebase:
 
-## Deployment to Firebase Hosting
+1.  **Build the Frontend**:
+    Create an optimized, production-ready build of the React app:
+    ```bash
+    npm run build
+    ```
 
-Follow these steps to deploy the application to a live URL.
-
-### 1. Set Up a Firebase Project
-
--   Go to the [Firebase Console](https://console.firebase.google.com/).
--   Click **"Add project"** and follow the on-screen instructions to create a new project.
--   Once the project is. created, navigate to the **Hosting** section from the side menu and click **"Get started"**.
-
-### 2. Log in to Firebase
-
-Authenticate the Firebase CLI with your Google account:
-
-```bash
-firebase login
-```
-
-### 3. Initialize Firebase in Your Project
-
-If your local project directory hasn't been initialized for Firebase yet, run the following command:
-
-```bash
-firebase init hosting
-```
-
-Follow the prompts:
--   **What do you want to use as your public directory?** Enter `build`.
--   **Configure as a single-page app (rewrite all urls to /index.html)?** Enter `Yes`.
--   **Set up automatic builds and deploys with GitHub?** Enter `No` for now.
-
-This will create `firebase.json` and `.firebaserc` files in your project.
-
-### 4. Build the Application
-
-Create an optimized, production-ready build of the React application:
-
-```bash
-npm run build
-```
-
-This command will create a `build` folder with all the static assets for your application.
-
-### 5. Deploy to Firebase
-
-Finally, deploy the contents of the `build` folder to Firebase Hosting:
-
-```bash
-firebase deploy --only hosting
-```
-
-After the command finishes, the CLI will output your live site URL(s).
-
----
-
-## Project Structure
-
-```
-PharmaLens/
-├── public/             # Contains the main HTML file and config.js
-├── src/
-│   ├── components/     # Reusable React components (Uploader, Results, etc.)
-│   ├── hooks/          # Custom React hooks (e.g., useGemini.ts)
-│   ├── types/          # TypeScript type definitions
-│   ├── App.tsx         # Main application component
-│   ├── index.css       # Global styles
-│   └── index.tsx       # Application entry point
-├── .gitignore          # Files to be ignored by Git
-├── firebase.json       # Firebase configuration
-├── package.json        # Project dependencies and scripts
-└── README.md           # This file
-```
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+2.  **Deploy to Firebase**:
+    Deploy both the frontend (Hosting) and the backend (Cloud Functions) with a single command:
+    ```bash
+    firebase deploy
+    ```
+    After deployment, the Firebase CLI will provide you with the live URL for your application.
