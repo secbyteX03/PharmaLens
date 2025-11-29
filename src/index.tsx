@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './config'; // This will load the API key
+import './firebase'; // This will initialize Firebase
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
