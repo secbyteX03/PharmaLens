@@ -13,6 +13,15 @@ PharmaLens aims to address these challenges by providing an AI-powered, image-ba
 
 PharmaLens is a web-based application that allows users to take a photo of a medication (either the pill itself or its packaging) and receive immediate, detailed information about it. The application leverages a powerful multimodal AI model to analyze the image and provide crucial details in a clear, easy-to-understand format.
 
+The workflow is as follows:
+1.  **Image Upload**: The user uploads an image to the React frontend.
+2.  **Backend Request**: The frontend calls a Firebase Cloud Function.
+3.  **AI Orchestration**: The Cloud Function uses **Genkit**, an open-source AI framework from Google, to manage and execute a defined AI workflow.
+4.  **AI Analysis**: The Genkit flow passes the image to **Google's Gemini 1.5 Flash model**, which analyzes the image and extracts the relevant information.
+5.  **Structured Response**: The model returns a structured JSON object, which is validated by Genkit and sent back to the frontend.
+6.  **Display Results**: The React application displays the information in a clear, user-friendly interface.
+
+
 ### Core Features (Prototype)
 
 #### 1. Medication Identification
@@ -29,10 +38,13 @@ PharmaLens is a web-based application that allows users to take a photo of a med
 
 ## Technology Stack
 
-The PharmaLens prototype is built using a modern, scalable technology stack:
+The PharmaLens prototype is built using a modern, scalable, and AI-centric technology stack:
+
 -   **Frontend**: A responsive web application built with **React** and **TypeScript**.
--   **Core AI Model**: **Google's Gemini 2.5 Flash**, a powerful, multimodal large language model accessed via the **Google AI API (Vertex AI)**. This model analyzes the user-submitted image and provides the structured medication data.
--   **Hosting**: The application is designed to be deployed on a standard web server or cloud platform.
+-   **Backend**: Serverless logic hosted on **Firebase Cloud Functions**.
+-   **Core AI Framework**: **Genkit (from Google)**, an open-source framework used to build, deploy, and monitor the AI-powered backend. It structures the interaction between the cloud function and the AI model, ensuring reliable and maintainable code.
+-   **Core AI Model**: **Google's Gemini 1.5 Flash**, a powerful, multimodal large language model accessed via Genkit's integration with the Google AI ecosystem.
+-   **Hosting**: The entire application is deployed on **Firebase**, with the frontend on **Firebase Hosting** and the backend on **Cloud Functions**.
 
 ## Impact & Benefits
 
@@ -48,7 +60,7 @@ The PharmaLens prototype is built using a modern, scalable technology stack:
 ## Implementation & Next Steps
 
 ### Current Status
-A functional web-based prototype has been successfully developed. The prototype demonstrates the core functionality of image-based medication analysis and displays the results in a user-friendly interface.
+A functional web-based prototype has been successfully developed and deployed to Firebase. The prototype demonstrates the core functionality of image-based medication analysis and displays the results in a user-friendly interface.
 
 ### Future Expansion & Sustainability
 The long-term vision for PharmaLens is to create a sustainable and scalable public health tool.
