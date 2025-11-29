@@ -1,93 +1,168 @@
+# PharmaLens: AI-Powered Medication Identification & Safety
 
-# PharmaLens - AI-Powered Medication Identification
+PharmaLens is a web-based application designed to combat the proliferation of counterfeit medications and improve health literacy in Africa. By allowing users to simply take a picture of a medication, PharmaLens provides immediate, life-saving information about its use, side effects, and critical warnings. This project was developed for the Unstacked-USAID Capstone program.
 
-## Overview
-PharmaLens is a mobile-first web application that helps users identify medications and access critical safety information through AI-powered image recognition. Designed with a focus on accessibility, it includes voice commands and supports multiple languages to serve diverse communities.
+[Link to Live Demo](#)  
+
+---
+
+## Technology Stack
+
+PharmaLens is built with a modern, scalable technology stack:
+
+-   **Frontend**: A responsive web application built with **React** and **TypeScript**.
+-   **Core AI Model**: **Google's Gemini 2.5 Flash**, a powerful, multimodal large language model accessed via the **Google AI API (Vertex AI)**.
+-   **Deployment**: Hosted on **Firebase Hosting** for reliable and scalable delivery.
+
+---
 
 ## Features
 
-- **AI-Powered Medication Identification**: Upload or take photos of medications for instant identification
-- **Counterfeit Detection**: Get alerts about potential counterfeit medications
-- **Voice Commands**: Fully operable through voice for accessibility
-- **Multilingual Support**: Available in multiple languages including English, French, Swahili, and Arabic
-- **Offline Functionality**: Core features work without internet connection
+-   **Image-Based Analysis**: Upload a photo of a pill or its packaging for instant identification.
+-   **Comprehensive Information**: Get structured details on the medication's name, primary use, active ingredients, and dosage.
+-   **Critical Safety Warnings**: See prominent alerts for severe reactions, drug interactions, and contraindications.
+-   **User-Friendly Interface**: Information is presented in easy-to-read cards with clear icons, designed for all literacy levels.
+-   **Responsive Design**: The application is fully functional on both mobile and desktop browsers.
 
-## Prerequisites
+---
 
-Before you begin, ensure you have the following installed:
+## Getting Started
 
-- Node.js 18 or later
-- npm (comes with Node.js) or yarn
-- Firebase account (for backend services)
-- Google Gemini API key
+Follow these instructions to set up and run the project on your local machine for development and testing purposes.
 
-## Installation
+### Prerequisites
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/secbyteX03/PharmaLens.git
-   cd pharmalens
-   ```
+Make sure you have the following software installed on your machine:
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+-   **Node.js**: Version 20.x or later. You can download it from [nodejs.org](https://nodejs.org/).
+-   **npm**: Node Package Manager (comes with Node.js).
+-   **Firebase CLI**: Google's command-line tool for managing Firebase projects. Install it globally with npm:
+    ```bash
+    npm install -g firebase-tools
+    ```
 
-3. **Set up environment variables**
-   Create a `.env.local` file in the root directory and add your API keys:
-   ```env
-   REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
-   REACT_APP_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-   REACT_APP_FIREBASE_PROJECT_ID=your_firebase_project_id
-   REACT_APP_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
-   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-   REACT_APP_FIREBASE_APP_ID=your_firebase_app_id
-   REACT_APP_GEMINI_API_KEY=your_gemini_api_key
-   ```
+### 1. Clone the Repository
 
-4. **Start the development server**
-   ```bash
-   npm start
-   # or
-   yarn start
-   ```
+First, clone the project repository to your local machine:
 
-5. **Open in browser**
-   The app will be available at [http://localhost:3000](http://localhost:3000)
+```bash
+git clone https://github.com/secbyteX03/PharmaLens.git
+cd PharmaLens
+```
 
-## Firebase Setup
+### 2. Install Dependencies
 
-1. Create a new project in the [Firebase Console](https://console.firebase.google.com/)
-2. Enable Authentication, Firestore, Storage, and Cloud Functions
-3. Add a web app to your Firebase project and copy the configuration
-4. Update the Firebase configuration in `src/firebase.ts`
+Install the required npm packages for the project:
 
-## Available Scripts
+```bash
+npm install
+```
 
-In the project directory, you can run:
+### 3. Configure Your Gemini API Key
 
-- `npm start` or `yarn start`: Runs the app in development mode
-- `npm test` or `yarn test`: Launches the test runner
-- `npm run build` or `yarn build`: Builds the app for production
-- `npm run eject`: Ejects from Create React App configuration
+The application requires a Google Gemini API key to function. 
 
-## Troubleshooting
+1.  **Get an API Key**: Obtain your API key from the [Google AI for Developers](https://ai.google.dev/) website.
+2.  **Create a Configuration File**:
+    -   In the `public` directory, create a new file named `config.js`.
+    -   Add the following line to `public/config.js`, replacing `"YOUR_API_KEY_HERE"` with your actual key:
+        ```javascript
+        window.GEMINI_API_KEY = "YOUR_API_KEY_HERE";
+        ```
 
-- **"Analysis failed..." error**: Ensure your Gemini API key is valid and has sufficient quota
-- **Firebase errors**: Verify your Firebase configuration and enable required services
-- **Build issues**: Clear node_modules and reinstall dependencies
-  ```bash
-  rm -rf node_modules
-  npm install
-  ```
+    *This file is already listed in `.gitignore` to ensure your API key is not accidentally committed to the repository.*
 
-## Contributing
+---
 
-We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+## Running the Application Locally
+
+Once the setup is complete, you can run the React development server:
+
+```bash
+npm start
+```
+
+This will automatically open the application in your default web browser at **`http://localhost:3000`**.
+
+The page will reload if you make edits to the source code.
+
+---
+
+## Deployment to Firebase Hosting
+
+Follow these steps to deploy the application to a live URL.
+
+### 1. Set Up a Firebase Project
+
+-   Go to the [Firebase Console](https://console.firebase.google.com/).
+-   Click **"Add project"** and follow the on-screen instructions to create a new project.
+-   Once the project is created, navigate to the **Hosting** section from the side menu and click **"Get started"**.
+
+### 2. Log in to Firebase
+
+Authenticate the Firebase CLI with your Google account:
+
+```bash
+firebase login
+```
+
+### 3. Initialize Firebase in Your Project
+
+If your local project directory hasn't been initialized for Firebase yet, run the following command:
+
+```bash
+firebase init hosting
+```
+
+Follow the prompts:
+-   **What do you want to use as your public directory?** Enter `build`.
+-   **Configure as a single-page app (rewrite all urls to /index.html)?** Enter `Yes`.
+-   **Set up automatic builds and deploys with GitHub?** Enter `No` for now.
+
+This will create `firebase.json` and `.firebaserc` files in your project.
+
+### 4. Build the Application
+
+Create an optimized, production-ready build of the React application:
+
+```bash
+npm run build
+```
+
+This command will create a `build` folder with all the static assets for your application.
+
+### 5. Deploy to Firebase
+
+Finally, deploy the contents of the `build` folder to Firebase Hosting:
+
+```bash
+firebase deploy --only hosting
+```
+
+After the command finishes, the CLI will output your live site URL(s).
+
+---
+
+## Project Structure
+
+```
+PharmaLens/
+├── public/             # Contains the main HTML file and config.js
+├── src/
+│   ├── components/     # Reusable React components (Uploader, Results, etc.)
+│   ├── hooks/          # Custom React hooks (e.g., useGemini.ts)
+│   ├── types/          # TypeScript type definitions
+│   ├── App.tsx         # Main application component
+│   ├── index.css       # Global styles
+│   └── index.tsx       # Application entry point
+├── .gitignore          # Files to be ignored by Git
+├── firebase.json       # Firebase configuration
+├── package.json        # Project dependencies and scripts
+└── README.md           # This file
+```
+
+---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
