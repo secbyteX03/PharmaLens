@@ -43,7 +43,7 @@ The clean and intuitive interface allows users to easily upload an image or take
 
 Watch this short video demonstrating the real-time analysis process:
 
-<video src="assets/video illutration.webm" width="100%" controls autoplay loop muted>
+<video src="assets/video%20illutration.webm" width="100%" controls autoplay loop muted>
   Your browser does not support the video tag.
 </video>
 
@@ -51,10 +51,10 @@ Watch this short video demonstrating the real-time analysis process:
 
 Once an image is analyzed, PharmaLens presents the information in a clear and organized manner.
 
-*Ibuprofen Analysis*
+*Birth Control Analysis*
 ![Ibuprofen Analysis](assets/illustration1.PNG)
 
-*Birth Control Analysis*
+*Ibuprofen Analysis*
 ![Birth Control Analysis](assets/illustration%202.PNG)
 
 
