@@ -30,7 +30,7 @@ IMAGE-SPECIFIC INSTRUCTIONS:
 - If it is a loose pill/tablet: Describe its physical characteristics (shape, color, imprints). Use search to identify it. Set "isMedication" to true.
 
 RESPONSE INSTRUCTIONS:
-Your entire response MUST be a single, valid JSON object. Do not include any other text, greetings, or explanations outside of the JSON object. Start with "{" and end with "}".
+Your entire response MUST be a single, valid JSON object. Do not include any other text, greetings, or explanations outside of the JSON object. Start with "{" and end with "}"
 
 Populate this exact JSON structure:
 {
@@ -75,7 +75,7 @@ export const useGemini = () => {
             throw new Error("Gemini API Key not configured. Please edit 'config.js' and add your API key.");
         }
 
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=${apiKey}`;
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
         
         const requestBody = {
             contents: [{
