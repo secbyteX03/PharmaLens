@@ -15,10 +15,10 @@ const App = () => {
     const [error, setError] = useState<string | null>(null);
     const { analyzeMedicationImage } = useGemini();
     
-    // Add a nice gradient background to the app
+    // Updated app style for a cleaner look
     const appStyle = {
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #f0fdfa 0%, #f0f9ff 100%)',
+        background: '#f7fafc', // A light gray background
     };
 
     const handleImageAnalysis = useCallback(async (base64: string, mimeType: string) => {
@@ -65,29 +65,14 @@ const App = () => {
     };
 
     return (
-        <div style={appStyle} className="min-h-screen">
+        <div style={appStyle} className="min-h-screen font-sans">
             <Header />
-            <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
-                    <div className="p-6 md:p-8">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">Analyze Medication</h2>
-                        {renderContent()}
-                    </div>
-                </div>
-                {result || error ? (
-                    <div className="mt-8 text-center">
-                        <button
-                            onClick={handleReset}
-                            className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                        >
-                            Analyze Another Medication
-                        </button>
-                    </div>
-                ) : null}
+            <main className="max-w-4xl mx-auto px-4 py-10">
+                {renderContent()}
             </main>
             <footer className="bg-white border-t border-gray-200 mt-12">
                 <div className="max-w-6xl mx-auto px-4 py-6 text-center text-gray-500 text-sm">
-                    <p> {new Date().getFullYear()} PharmaLens. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} PharmaLens. All rights reserved.</p>
                     <p className="mt-2">This tool provides AI-generated information and is not a substitute for professional medical advice.</p>
                 </div>
             </footer>
