@@ -40,7 +40,7 @@ The clean and intuitive interface allows users to easily upload an image or take
 
 ### Live Analysis in Action
 
-Watch this short video demonstrating the real-time analysis process:
+Click on the image below to watch this short video demonstrating the real-time analysis process:
 
 [![Watch the video](assets/UIview.PNG)](assets/video%20illutration.webm)
 
