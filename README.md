@@ -2,8 +2,7 @@
 
 PharmaLens is a web-based application designed to combat the proliferation of counterfeit medications and improve health literacy in Africa. By allowing users to simply take a picture of a medication, PharmaLens provides immediate, life-saving information about its use, side effects, and critical warnings. 
 
-[Link to Live Demo](#)  
-*Desktop View*
+[Link to Live Demo](https://pharmalens-06104265-9325f.web.app)  
 ![PharmaLens Desktop UI](assets/UIview.PNG)
 ---
 
@@ -43,19 +42,17 @@ The clean and intuitive interface allows users to easily upload an image or take
 
 Watch this short video demonstrating the real-time analysis process:
 
-<video src="assets/video%20illutration.webm" width="100%" controls autoplay loop muted>
-  Your browser does not support the video tag.
-</video>
+[![Watch the video](assets/UIview.PNG)](assets/video%20illutration.webm)
 
 ### Example Results
 
 Once an image is analyzed, PharmaLens presents the information in a clear and organized manner.
 
 *Birth Control Analysis*
-![Ibuprofen Analysis](assets/illustration1.PNG)
+![Birth Control Analysis](assets/illustration1.PNG)
 
 *Ibuprofen Analysis*
-![Birth Control Analysis](assets/illustration%202.PNG)
+![Ibuprofen Analysis](assets/illustration%202.PNG)
 
 
 ---
@@ -99,9 +96,9 @@ The application requires a Google Gemini API key to function.
 1.  **Get an API Key**: Obtain your API key from the [Google AI for Developers](https://ai.google.dev/) website.
 2.  **Create a Configuration File**:
     -   In the `public` directory, create a new file named `config.js`.
-    -   Add the following line to `public/config.js`, replacing `\"YOUR_API_KEY_HERE\"` with your actual key:
+    -   Add the following line to `public/config.js`, replacing `"YOUR_API_KEY_HERE"` with your actual key:
         ```javascript
-        window.GEMINI_API_KEY = \"YOUR_API_KEY_HERE\";
+        window.GEMINI_API_KEY = "YOUR_API_KEY_HERE";
         ```
 
     *This file is already listed in `.gitignore` to ensure your API key is not accidentally committed to the repository.*
