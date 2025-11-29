@@ -10,10 +10,10 @@ interface ResultDisplayProps {
 }
 
 const InfoCard = ({ icon, title, children }: { icon: React.ReactNode, title: string, children: React.ReactNode }) => (
-    <div className="bg-white p-6 rounded-xl shadow-md border border-gray-200 h-full">
-        <div className="flex items-center mb-3">
+    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 h-full">
+        <div className="flex items-center mb-4">
             {icon}
-            <h3 className={`ml-3 text-xl font-semibold text-gray-800`}>{title}</h3>
+            <h3 className={`ml-3 text-lg font-semibold text-gray-700`}>{title}</h3>
         </div>
         <div className="text-gray-600 space-y-2">
             {children}
@@ -23,7 +23,7 @@ const InfoCard = ({ icon, title, children }: { icon: React.ReactNode, title: str
 
 const ResultDisplay = ({ result, image, onReset }: ResultDisplayProps) => {
     return (
-        <div className="w-full max-w-4xl mx-auto space-y-8 animate-fade-in">
+        <div className="w-full max-w-4xl mx-auto space-y-6 animate-fade-in">
             <style>{`
                 @keyframes fade-in {
                     from { opacity: 0; transform: translateY(10px); }
@@ -32,15 +32,17 @@ const ResultDisplay = ({ result, image, onReset }: ResultDisplayProps) => {
                 .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
             `}</style>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="md:col-span-1 flex flex-col items-center bg-white p-6 rounded-xl shadow-md border border-gray-200">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">{result.medicationName}</h2>
-                    <img src={image} alt="Uploaded medication" className="rounded-lg object-contain max-h-60 w-full shadow-inner" />
-                </div>
-                <div className="md:col-span-2">
-                    <InfoCard icon={<CheckCircleIcon className="h-7 w-7 text-green-500" />} title="Primary Use">
-                        <p className="text-lg">{result.primaryUse}</p>
-                    </InfoCard>
+            <div className="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="md:col-span-1 flex flex-col items-center">
+                        <img src={image} alt="Uploaded medication" className="rounded-lg object-contain max-h-60 w-full shadow-inner mb-4" />
+                        <h2 className="text-2xl font-bold text-gray-800 text-center">{result.medicationName}</h2>
+                    </div>
+                    <div className="md:col-span-2">
+                        <InfoCard icon={<CheckCircleIcon className="h-7 w-7 text-green-500" />} title="Primary Use">
+                            <p className="text-base">{result.primaryUse}</p>
+                        </InfoCard>
+                    </div>
                 </div>
             </div>
 
@@ -94,10 +96,10 @@ const ResultDisplay = ({ result, image, onReset }: ResultDisplayProps) => {
                 </InfoCard>
             </div>
 
-            <div className="bg-red-50/50 p-6 rounded-xl shadow-md border border-red-200 space-y-6">
+            <div className="bg-red-50 p-6 rounded-lg shadow-sm border border-red-200 space-y-4">
                 <div className="flex items-center">
                     <WarningIcon className="h-8 w-8 text-red-500" />
-                    <h3 className="ml-3 text-2xl font-bold text-red-800">Critical Warnings</h3>
+                    <h3 className="ml-3 text-xl font-bold text-red-800">Critical Warnings</h3>
                 </div>
 
                 {result.severeReactions.length > 0 && (
@@ -167,16 +169,16 @@ const ResultDisplay = ({ result, image, onReset }: ResultDisplayProps) => {
                         <InfoIcon className="h-6 w-6 text-amber-500" />
                     </div>
                     <div className="ml-3">
-                        <h3 className="text-lg font-medium text-amber-800">Disclaimer</h3>
+                        <h3 className="text-sm font-medium text-amber-800">Disclaimer</h3>
                         <p className="mt-2 text-sm text-amber-700">{result.disclaimer}</p>
                     </div>
                 </div>
             </div>
 
-            <div className="text-center pt-4">
+            <div className="text-center pt-6">
                 <button
                     onClick={onReset}
-                    className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                    className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 shadow-sm"
                 >
                     Analyze Another Medication
                 </button>
